@@ -1,0 +1,18 @@
+name: 'tube_analytics'
+version: '1.0.0'
+config-version: 2
+profile: 'tube_analytics'
+model-paths: ['models']
+seed-paths: ['seeds']
+clean-targets: ['target', 'dbt_packages']
+models:
+  tube_analytics:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
+seeds:
+  tube_analytics:
+    +quote_columns: false
