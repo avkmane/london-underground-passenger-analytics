@@ -1,0 +1,38 @@
+version: 2
+models:
+  - name: stg_entries
+    description: Long-format hourly station entry counts.
+    columns:
+      - name: station
+        tests: [not_null]
+      - name: hour_code
+        tests: [not_null]
+      - name: entries
+        tests: [not_null]
+  - name: stg_exits
+    description: Long-format hourly station exit counts.
+    columns:
+      - name: station
+        tests: [not_null]
+      - name: hour_code
+        tests: [not_null]
+      - name: exits
+        tests: [not_null]
+  - name: int_station_hourly_flow
+    description: One row per station and hour with entries, exits, total flow and net arrivals.
+    columns:
+      - name: station_hour_key
+        tests: [not_null, unique]
+      - name: station
+        tests: [not_null]
+  - name: mart_station_metrics
+    description: Station-level analytical mart containing peak shares and commuter-orientation features.
+    columns:
+      - name: station
+        tests: [not_null, unique]
+      - name: total_entries
+        tests: [not_null]
+      - name: total_exits
+        tests: [not_null]
+      - name: employment_score
+        tests: [not_null]
